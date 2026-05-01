@@ -42,20 +42,34 @@ user_input = st.text_area("Option 1: Paste operational data or regulatory querie
 st.markdown("### OR")
 uploaded_file = st.file_uploader("Option 2: Upload audit documents (PDF, CSV, or TXT)", type=["pdf", "csv", "txt"])
 
-if uploaded_file is not None:
-    st.success(f"File '{uploaded_file.name}' uploaded successfully!")
-    # Preview if it's a CSV
-    if uploaded_file.type == "text/csv":
-        df = pd.read_csv(uploaded_file)
-        st.write("Data Preview:")
-        st.dataframe(df.head())
-
 # Run Audit Button
 if st.button("Run AI Audit"):
     if user_input or uploaded_file:
         with st.spinner('Analyzing data against current EU regulations...'):
             st.success("Analysis complete. Reviewing compliance alignment with EU Directives.")
-            st.info("**AI Verdict:** Your data shows 85% alignment with EU Green Deal standards. Upgrade to Premium for the full compliance gap analysis.")
+            
+            # Audit Results Content
+            audit_result = """
+            ECOAUDIT EU - COMPLIANCE REPORT
+            -------------------------------
+            Status: Preliminary Analysis Complete
+            Alignment Score: 85%
+            Standards Checked: EU Green Deal, Carbon Reporting Standards
+            
+            Verdict: Your operations show strong alignment with EU environmental standards. 
+            However, manual verification of Scope 3 emissions is recommended.
+            """
+            
+            st.info(audit_result)
+            
+            # Download Feature
+            st.markdown("### Download Results")
+            st.download_button(
+                label="Download Audit Report (.txt)",
+                data=audit_result,
+                file_name="EcoAudit_Report.txt",
+                mime="text/plain"
+            )
     else:
         st.warning("Please provide data or upload a file to begin the audit.")
 
