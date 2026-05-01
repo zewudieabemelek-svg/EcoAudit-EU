@@ -15,17 +15,22 @@ except:
 st.title("EcoAudit EU: Strategic Compliance")
 st.markdown("---")
 
-# Sidebar for Subscription & Monetization
+# Sidebar for Subscription & Payment (Bank Transfer)
 st.sidebar.header("Pricing Plans")
 plan = st.sidebar.radio("Access Level:", ["Free Plan", "Premium ($9.99/mo)"])
 
 if plan == "Premium ($9.99/mo)":
-    st.sidebar.success("💎 Premium Features Unlocked!")
+    st.sidebar.success("💎 PREMIUM FEATURES")
     st.sidebar.write("- Detailed Carbon Compliance Reports")
     st.sidebar.write("- 24/7 AI Legal Regulatory Advisor")
     st.sidebar.write("- Automated EU Green Deal Audit")
-    if st.sidebar.button("Proceed to Payment"):
-        st.sidebar.write("Redirecting to secure payment gateway...")
+    
+    st.sidebar.warning("⚠️ PAYMENT REQUIRED FOR ACTIVATION")
+    st.sidebar.write("**BANK TRANSFER DETAILS:**")
+    st.sidebar.write("BANK: **COMMERCIAL BANK OF ETHIOPIA**")
+    st.sidebar.write("ACC NAME: **ABEMELEK ZEWUDIE MOKRIYA**")
+    st.sidebar.write("ACC NUMBER: **1000269762776**")
+    st.sidebar.write("ONCE PAID, SEND A SCREENSHOT TO: support@ecoaudit.eu")
 else:
     st.sidebar.info("Free Plan Active. Basic guidelines only.")
     st.sidebar.write("Upgrade to Premium for full AI-driven audit tools.")
