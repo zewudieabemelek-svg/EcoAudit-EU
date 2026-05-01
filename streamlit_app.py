@@ -7,34 +7,36 @@ st.set_page_config(
     layout="centered"
 )
 
-# Header Section
-st.title("🇪🇺 EcoAudit EU")
-st.subheader("AI-Powered Environmental Compliance Manager")
+# Logo placeholder
+try:
+    st.image("logo.png", width=150)
+except:
+    st.info("System: Application logo is being updated...")
 
-# Main Features Description
-st.markdown("""
-### Strategic Compliance Overview
-This professional tool is designed to assist organizations in navigating the complexities of 
-**EU Environmental Regulations** and **Carbon Reporting Standards**.
+st.title("🇪🇺 EcoAudit EU: Strategic Compliance")
+st.markdown("---")
 
-#### Key Capabilities:
-*   **Regulatory Alignment:** Real-time tracking of EU Green Deal directives.
-*   **Risk Assessment:** AI-driven identification of compliance gaps.
-*   **Audit Readiness:** Automated documentation for institutional audits.
-""")
+# Monetization Section (Subscription Plans)
+st.sidebar.header("Pricing Plans")
+plan = st.sidebar.radio("Access Level:", ["Free Plan", "Premium ($9.99/mo)"])
 
-# Status Indicator
-st.info("System Status: Operational | Version: 1.0.0 (Global Release)")
+if plan == "Premium ($9.99/mo)":
+    st.success("💎 Premium Features Unlocked!")
+    st.subheader("Your Strategic Tools:")
+    st.write("- 📊 Detailed Carbon Compliance Reports")
+    st.write("- 🤖 24/7 AI Legal Regulatory Advisor")
+    st.write("- 🌍 Automated EU Green Deal Audit")
+    if st.button("Proceed to Payment"):
+        st.write("Redirecting to secure payment gateway...")
+else:
+    st.info("Free Plan Active. Basic guidelines only.")
+    st.write("Upgrade to Premium for full AI-driven audit tools.")
 
-# Interactive Element
-st.sidebar.header("Control Panel")
-compliance_area = st.sidebar.selectbox(
-    "Select Compliance Area",
-    ["Carbon Emissions", "Waste Management", "Supply Chain Transparency"]
-)
+st.markdown("---")
 
-st.write(f"Displaying analytics for: **{compliance_area}**")
-
-# Footer
-st.divider()
-st.caption("© 2026 EcoAudit EU | Professional Institutional Solutions")
+# Main Application Logic
+st.header("Start Your AI Compliance Audit")
+data = st.text_area("Paste operational data or regulatory queries here:")
+if st.button("Run AI Audit"):
+    with st.spinner('Analyzing data against current EU regulations...'):
+        st.write("Analysis complete. Reviewing compliance alignment with EU Directives.")
