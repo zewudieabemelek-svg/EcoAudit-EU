@@ -19,25 +19,27 @@ st.sidebar.header("SELECT YOUR PLAN")
 plan = st.sidebar.selectbox("Choose Access Level:", 
                            ["Free Plan", "Professional ($29/mo)", "Enterprise ($2,499/mo)", "Billionaire/Investor (VIP Custom)"])
 
-if plan == "Billionaire/Investor (VIP Custom)":
-    st.sidebar.success("👑 ULTRA-HIGH-NET-WORTH SOLUTIONS")
-    st.sidebar.write("- Global Portfolio Tax Optimization")
-    st.sidebar.write("- Carbon Credit Strategy Planning")
-    st.sidebar.warning("⚠️ EXCLUSIVE INVESTOR ACCESS")
+# Common Payment Message Logic with User Details
+def display_payment_info(plan_name):
+    st.sidebar.success(f"👑 {plan_name} ACTIVE")
     st.sidebar.write("**OFFICIAL BANK TRANSFER DETAILS:**")
     st.sidebar.write("BANK: **COMMERCIAL BANK OF ETHIOPIA**")
     st.sidebar.write("ACC NAME: **ABEMELEK ZEWUDIE MOKRIYA**")
     st.sidebar.write("ACC NUMBER: **1000269762776**")
-    st.sidebar.write("For VIP Onboarding: vip@ecoaudit.eu")
+    st.sidebar.warning("⚠️ ACTION REQUIRED")
+    st.sidebar.write("Send payment screenshot to activate:")
+    st.sidebar.write("📧 Email: **zewudieabemelek@gmail.com**")
+    st.sidebar.write("✈️ Telegram: **@Abela21**")
 
-elif "Enterprise" in plan or "Professional" in plan:
-    st.sidebar.success("💼 CORPORATE ACCESS")
-    st.sidebar.write("**PAYMENT DETAILS:**")
-    st.sidebar.write("BANK: **COMMERCIAL BANK OF ETHIOPIA**")
-    st.sidebar.write("ACC NAME: **ABEMELEK ZEWUDIE MOKRIYA**")
-    st.sidebar.write("ACC NUMBER: **1000269762776**")
+if plan == "Billionaire/Investor (VIP Custom)":
+    display_payment_info("VIP INVESTOR PLAN")
+    st.sidebar.write("- Priority Wealth Optimization")
+elif plan == "Enterprise ($2,499/mo)":
+    display_payment_info("ENTERPRISE PLAN")
+elif plan == "Professional ($29/mo)":
+    display_payment_info("PROFESSIONAL PLAN")
 else:
-    st.sidebar.info("Free Plan Active.")
+    st.sidebar.info("Free Plan Active. Upgrade for AI Tax Tools.")
 
 st.markdown("---")
 
@@ -53,11 +55,10 @@ if st.button("Calculate Tax Liability"):
         with st.spinner('Calculating EU CBAM Tax & Corporate Liabilities...'):
             tax_estimate = emissions * 85 
             potential_fine = revenue * 0.04
-            
             st.error(f"💰 ESTIMATED CARBON TAX LIABILITY: ${tax_estimate:,.2f}")
             st.warning(f"🚨 POTENTIAL NON-COMPLIANCE FINE: ${potential_fine:,.2f}")
             st.success(f"✅ AI STRATEGY: Implementing Scope 3 reduction could save you approx. ${tax_estimate * 0.25:,.2f} annually.")
-            st.button("Download Full 40-Page Wealth Strategy (VIP Only)")
+            st.button("Download Full Wealth Strategy (VIP Only)")
     else:
         st.warning("🔒 This Financial Optimization tool is restricted to VIP/Billionaire Plan members.")
 
@@ -65,9 +66,12 @@ st.markdown("---")
 
 # Audit Section
 st.header("Start Your AI Compliance Audit")
-user_input = st.text_area("Paste operational data here:", height=100)
+user_input = st.text_area("Paste operational data or regulatory queries here:", height=100)
 if st.button("Run AI Audit"):
-    st.info("Analysis complete. Reviewing compliance alignment with EU Directives.")
+    if user_input:
+        st.info("Analysis complete. Reviewing compliance alignment with EU Directives.")
+    else:
+        st.warning("Please provide data to begin the audit.")
 
 st.markdown("---")
 st.caption("© 2026 EcoAudit EU | Global Enterprise & Wealth Management Systems")
