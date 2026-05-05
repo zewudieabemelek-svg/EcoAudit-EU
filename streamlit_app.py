@@ -1,34 +1,38 @@
 import streamlit as st
 
-# 1. Page Configuration
-st.set_page_config(page_title="EcoAudit EU | AI Compliance", page_icon="🌱")
+# 1. Branding Updates
+st.set_page_config(page_title="VeriGreen AI | ESG Compliance", page_icon="🌱")
 
-# 2. Login Logic
 if 'logged_in' not in st.session_state:
     st.session_state['logged_in'] = False
 
 if not st.session_state['logged_in']:
-    st.markdown("<h1 style='text-align: center;'>🌱 EcoAudit EU</h1>", unsafe_allow_html=True)
-    st.markdown("<p style='text-align: center;'>Authorized Access Only</p>", unsafe_allow_html=True)
+    # Login Page with New Name
+    st.markdown("<h1 style='text-align: center; color: #2e7d32;'>🌱 VeriGreen AI</h1>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center;'>AI-Powered ESG Audit & Compliance</p>", unsafe_allow_html=True)
     
     email = st.text_input("Partner Email")
     password = st.text_input("Security Key", type="password")
     
     if st.button("Access Dashboard", use_container_width=True):
-        if email == "admin@ecoaudit.eu" and password == "eu2026":
+        if email == "admin@verigreen.ai" and password == "vg2026": # Updated login
             st.session_state['logged_in'] = True
             st.rerun()
         else:
-            st.error("Invalid credentials. Please contact support.")
+            st.error("Access Denied.")
 else:
-    # 3. Main Dashboard
-    st.sidebar.success("Account Verified")
-    st.title("📊 ESG Compliance Dashboard")
-    st.info("Welcome! Your AI Auditor is ready to process reports.")
+    # Main Dashboard
+    st.sidebar.title("VeriGreen AI")
+    st.sidebar.success("Verified Partner")
+    st.title("📊 VeriGreen ESG Dashboard")
+    st.info("AI Auditor is active and monitoring compliance.")
 
-    company = st.text_input("Enter Client Company Name")
+    company = st.text_input("Client Name to Audit", placeholder="e.g. Berlin Logistics")
     if st.button("Generate AI Audit Report"):
-        st.success(f"Analysis Complete for {company}")
+        st.success(f"Audit Analysis Complete for {company}")
+        st.divider()
+        st.write("✅ Environmental Impact: High Compliance")
+        st.write("✅ Social Governance: Standard Met")
     
     if st.sidebar.button("Logout"):
         st.session_state['logged_in'] = False
